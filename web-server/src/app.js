@@ -9,20 +9,30 @@ const app = express();
 
 //req = request
 //res = response
-app.get("", (req, res) => {
-	res.send("Hello Express!"); //send something back to the requester
+app.get("/", (req, res) => {
+	res.send("<h1>Weather</h1>"); //send something back to the requester
 });
 
 app.get("/help", (req, res) => {
-	res.send("Help page");
+	res.send([
+		{
+			name: "Andrew",
+		},
+		{
+			name: "Sarah",
+		},
+	]);
 });
 
 app.get("/about", (req, res) => {
-	res.send("About page");
+	res.send("<h1>About page</h1>");
 });
 
 app.get("/weather", (req, res) => {
-	res.send("Your Weather");
+	res.send({
+		forcast: "It is snowing",
+		location: "Philadelphia",
+	});
 });
 
 //start the sever up & host the server on the common port 3000
