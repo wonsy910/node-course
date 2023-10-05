@@ -5,9 +5,39 @@ console.log(__dirname);
 console.log();
 
 const app = express();
-const publicDirectoryPath = path.join(__dirname, "../public");
 
+//Define paths for Express config
+const publicDirectoryPath = path.join(__dirname, "../public");
+const viewsPath = path.join(__dirname, "../templates");
+
+//Setup handlebars engine and views location
+app.set("view engine", "hbs"); //handlerbar set up
+app.set("views", viewsPath);
+
+//Setup static directory to serve
 app.use(express.static(publicDirectoryPath));
+
+app.get("/", (req, res) => {
+	res.render("index", {
+		title: "Weather App",
+		name: "Andrew Mead",
+	});
+});
+
+app.get("/about", (req, res) => {
+	res.render("about", {
+		title: "About Me",
+		name: "Andrew Mead",
+	});
+});
+
+app.get("/help", (req, res) => {
+	res.render("help", {
+		title: "Help Page",
+		name: "Andrew Won",
+		basicText: "Guess who I am boys!",
+	});
+});
 
 //We have multiple routes
 //app.com
